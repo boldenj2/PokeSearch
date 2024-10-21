@@ -12,13 +12,13 @@ function App() {
 
   const handleSubmit = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      setSubmittedPokemonName(pokemon);
+      setSubmittedPokemonName(pokemon.toLocaleLowerCase());
     }
   };
 
 
   return (
-    <div>
+    <div className='App'>
       <h1>MP2</h1>
       <input type='text' placeholder='Enter Pokémon name or ID' value={pokemon} onChange={handleInputChange} onKeyPress={handleSubmit} />
       <PokemonCard idOrName={submittedPokemon} />

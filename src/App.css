@@ -1,13 +1,29 @@
 html, body, #root {
   height: 100%;
   margin: 0;
+
 }
 
 .App {
+  height: 100vh; 
+  padding: 20px;
   align-items: center;
   justify-content: center;
-  display: flex;
-  height: 100vh; /* Ensure the .App element takes the full viewport height */
+  text-align: center;
+  flex-direction: column;
+  background-color: #282c34;
+
+}
+
+input {
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
 }
 
 
