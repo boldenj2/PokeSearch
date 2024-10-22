@@ -4,21 +4,41 @@ html, body, #root {
 
 }
 
+body {
+  background-color: #282c34;
+  background-size: cover;
+}
+
 .App {
-  height: 100vh; 
+  height: 100%;
   padding: 20px;
   align-items: center;
   justify-content: center;
   text-align: center;
   flex-direction: column;
-  background-color: #282c34;
+
 
 }
 
-input {
+.App a {
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
   padding: 10px;
-  margin: 10px 0;
-  font-size: 16px;
+  margin: 10px;
+  border: 2px solid white;
+  border-radius: 10px;
+  background-color: aliceblue;
+  justify-content: space-evenly;
+  transition: background-color 0.3s, color 0.3s;
+
+  }
+
+  .App a:hover {
+    background-color: #61dafb;
+    color: white;
 }
 
 h1 {

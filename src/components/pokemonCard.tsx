@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import './pokemonCard.css';
-import { getPokemonByNameOrID, getPokemonByType} from '../api/pokemonService';
+import { getPokemonByNameOrID} from '../api/pokemonService';
 
 interface Pokemon {
   name: string;
@@ -20,25 +19,9 @@ interface Pokemon {
   }[];
 }
 
-const typeColors: { [key: string]: string } = {
-  normal: '#A8A878',
-  fire: '#F08030',
-  water: '#6890F0',
-  electric: '#F8D030',
-  grass: '#78C850',
-  ice: '#98D8D8',
-  fighting: '#C03028',
-  poison: '#A040B0',
-  ground: '#E0C068',
-  flying: '#A98FF3',
-  psychic: '#F85888',
-  bug: '#A8B820',
-  rock: '#B8A038',
-  ghost: '#705898',
-  dragon: '#7038F8',
-  dark: '#705848',
-  steel: '#B8B8D0',
-  fairy: '#F0B6BC',
+const capitalizeFirstLetter = (string: string) => {
+  if (!string) return ''; // Handle empty strings
+  return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
 function PokemonCard({idOrName}: {idOrName: string | number}) {
@@ -50,11 +33,35 @@ function PokemonCard({idOrName}: {idOrName: string | number}) {
       .catch((error) => console.error('Error fetching Pokémon data:', error));
   }, [idOrName]);
 
+  const getTypeColor = (type: string) => {
+    const typeColors: { [key: string]: string } = {
+      normal: '#A8A77A',
+      fire: '#EE8130',
+      water: '#6390F0',
+      grass: '#7AC74C',
+      electric: '#F7D02C',
+      ice: '#96D9D6',
+      fighting: '#C22E28',
+      poison: '#A33EA1',
+      ground: '#E2BF65',
+      flying: '#A98FF3',
+      psychic: '#F95587',
+      bug: '#A6B91A',
+      rock: '#B6A136',
+      ghost: '#735797',
+      dragon: '#6F35FC',
+      dark: '#705746',
+      steel: '#B7B7CE',
+      fairy: '#D685AD',
+    };
+    return typeColors[type];
+  };
+
   return (
     <div className='Pokemon-Card'>
       {pokemon ? (
         <div>
-          <h2>{pokemon.name}</h2>
+          <h2>{capitalizeFirstLetter(pokemon.name)}</h2>
           
           {/* Display Pokémon Image */}
           {pokemon.sprites?.front_default ? (
@@ -66,9 +73,14 @@ function PokemonCard({idOrName}: {idOrName: string | number}) {
           {/* Display Pokémon Types */}
           <div className='Type'>
             <h3>Type(s):</h3>
-            {pokemon.types?.map((typeObj: any) => (
-              <span key={typeObj.type.name}>{typeObj.type.name} </span>
-            ))}
+            {pokemon.types?.map((typeObj: any) => {
+              const backgroundColor  = getTypeColor(typeObj.type.name);
+              return (
+                <span key={typeObj.type.name} style={{ backgroundColor, padding: '5px', borderRadius: '5px' }}>
+                  {capitalizeFirstLetter(typeObj.type.name)} 
+                </span>
+              );
+          })}
           </div>
 
           {/* Display Pokémon Stats */}

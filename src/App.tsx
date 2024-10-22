@@ -1,29 +1,23 @@
-import React, {useState} from 'react';
-import PokemonCard from './components/pokemonCard';
+import React from 'react';
+import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
+import PokemonSearchPage from './pages/PokemonSearchPage';
+import PokemonGalleryPage from './pages/PokemonGalleryPage';
 import './App.css';
 
 function App() {
-  const [pokemon, setPokemon] = useState<string>('');
-  const [submittedPokemon, setSubmittedPokemonName] = useState<string>('');
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPokemon(event.target.value);
-  };
-
-  const handleSubmit = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      setSubmittedPokemonName(pokemon.toLocaleLowerCase());
-    }
-  };
-
-
   return (
-    <div className='App'>
-      <h1>MP2</h1>
-      <input type='text' placeholder='Enter Pokémon name or ID' value={pokemon} onChange={handleInputChange} onKeyPress={handleSubmit} />
-      <PokemonCard idOrName={submittedPokemon} />
-    </div>
-
+    <Router>
+      <div className='App'>
+        <nav>
+          <Link to='/'>Search Pokémon</Link>
+          <Link to="/gallery">Pokémon Gallery</Link>
+        </nav>
+        <Routes>
+          <Route path='/' element={<PokemonSearchPage />} />
+          <Route path='/gallery' element={<PokemonGalleryPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
