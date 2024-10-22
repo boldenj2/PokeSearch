@@ -1,0 +1,56 @@
+.Modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of other content */
+}
+
+.Modal-Content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 80%;
+    position: relative;
+}
+
+
+.Modal-Content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+
+.Modal-Content span {
+    padding: 5px;
+    margin: 5px;
+    justify-content: space-evenly;
+    border: 2px solid #000;
+}
+
+.Modal .Modal-Content img {
+    width: 150px;
+    height: 150px;
+}
+
+.Modal .Modal-Content .Stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    gap: 10px; 
+}
+
+.Close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}

@@ -1,0 +1,57 @@
+.Gallery-Page {
+    padding: 20px;
+    text-align: center;
+}
+
+
+.Pokemon-Container {
+    margin: auto;
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive columns */
+    gap: 20px; 
+    padding: 20px;
+    border: 2px solid #ccc; 
+    border-radius: 10px; 
+    background-color: #f9f9f9; 
+}
+
+.Gallery-Page .Pokemon-Card {
+    width: 150px;
+    height: 200px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    margin: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.Gallery-Page .Pokemon-Card:hover {
+    transform: scale(1.05);
+}
+
+.Gallery-Page .Pokemon-Card h2 {
+    font-size: medium;
+}
+
+.Gallery-Page .Type-Selector .Button-Container button {
+    padding: 5px;
+    margin: 5px;
+    border: 2px solid #000;
+
+    transition: transform 0.3s ease-in-out;
+}
+
+.Gallery-Page .Type-Selector .Button-Container button:hover {
+    transform: translateY(-5px);
+}
+
+.Gallery-Page .Type-Selector {
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+
+
