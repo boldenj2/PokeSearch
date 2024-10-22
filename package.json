@@ -1,5 +1,6 @@
 {
   "name": "mp2",
+  "homepage": "https://boldenj2.gitlab.io/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
