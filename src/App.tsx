@@ -9,11 +9,11 @@ function App() {
     <Router>
       <div className='App'>
         <nav>
-          <Link to='/'>Search Pokémon</Link>
+          <Link to=''>Search Pokémon</Link>
           <Link to="/gallery">Pokémon Gallery</Link>
         </nav>
         <Routes>
-          <Route path='/' element={<PokemonSearchPage />} />
+          <Route path='' element={<PokemonSearchPage />} />
           <Route path='/gallery' element={<PokemonGalleryPage />} />
         </Routes>
       </div>
