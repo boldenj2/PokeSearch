@@ -53,5 +53,8 @@
     margin: auto;
 }
 
+.type-button.active {
+  background-color: #4caf50; 
+}
 
 

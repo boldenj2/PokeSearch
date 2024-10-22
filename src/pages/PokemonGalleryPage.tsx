@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import PokemonCardGallery from "../components/PokemonCardGallery";
 import TypeSelector from "../components/TypeSelector";
 import PokemonModal from "../components/PokemonModal";
-import {getPokemonByType, getPokemonByNameOrID} from "../api/pokemonService";
+import {getPokemonByType, getPokemonByNameOrID, getAllPokemon} from "../api/pokemonService";
 import "../styles/pokemonGalleryPage.css";
 
 function PokemonGalleryPage() {
@@ -14,10 +14,12 @@ function PokemonGalleryPage() {
     const handleTypeChange = async (type: string) => {
         setSelectedType(type);
         if (type) {
-            const pokemons = await getPokemonByType(type);
-            setPokemonList(pokemons);
+            const pokemon = await getPokemonByType(type);
+            setPokemonList(pokemon);
         } else {
-            setPokemonList([]); 
+            const pokemon = await getAllPokemon();
+            setPokemonList(pokemon.results.map((p: any) => p.name));
+            
         }
     };
 

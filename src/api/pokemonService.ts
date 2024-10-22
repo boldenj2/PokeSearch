@@ -26,9 +26,10 @@ export const getPokemonByType = async (type: string | number) => {
 export const getAllPokemon = async () => {
   try {
     const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=1000');
-    return response.data.results;
+    return response.data;
   } catch (error) {
     console.error('Error fetching Pokémon data:', error);
     throw error;
   }
-}
+};
+

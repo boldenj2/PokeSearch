@@ -4,7 +4,7 @@ interface SearchBarProps {
   onSearch: (pokemonName: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+function SearchBar ({ onSearch }: SearchBarProps) {
   const [input, setInput] = useState('');
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {

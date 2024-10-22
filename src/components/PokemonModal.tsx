@@ -12,7 +12,7 @@ const capitalizeFirstLetter = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
-const PokemonModal: React.FC<PokemonModalProps> = ({ isOpen, onClose, pokemon }) => {
+function PokemonModal({ isOpen, onClose, pokemon }: PokemonModalProps) {
     if (!isOpen || !pokemon) {
         return null;
     }
