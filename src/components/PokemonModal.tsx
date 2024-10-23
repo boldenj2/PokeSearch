@@ -26,12 +26,12 @@ export interface Pokemon {
 }
 
 interface PokemonModalProps {
-
     isOpen: boolean;
     onClose: () => void;
     pokemonList: Pokemon[];
     currentIndex: number;
     onIndexChange: (index: number) => void;
+    sortOrder: 'asc' | 'desc';
 }
 
 const capitalizeFirstLetter = (string: string) => {
@@ -39,7 +39,7 @@ const capitalizeFirstLetter = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
-function PokemonModal({ isOpen, onClose, pokemonList, currentIndex, onIndexChange }: PokemonModalProps) {
+function PokemonModal({ isOpen, onClose, pokemonList, currentIndex, onIndexChange, sortOrder }: PokemonModalProps) {
     if (!isOpen || !pokemonList || pokemonList.length === 0) {
         return null;
     }
@@ -71,14 +71,26 @@ function PokemonModal({ isOpen, onClose, pokemonList, currentIndex, onIndexChang
     };
 
     const handleNext = () => {
-        if (currentIndex < pokemonList.length - 1) {
-            onIndexChange(currentIndex + 1);
+        if (sortOrder === 'asc') {
+            if (currentIndex < pokemonList.length - 1) {
+                onIndexChange(currentIndex + 1);
+            }
+        } else {
+            if (currentIndex > 0) {
+                onIndexChange(currentIndex + 1);
+            }
         }
     };
 
     const handlePrevious = () => {
-        if (currentIndex > 0) {
-            onIndexChange(currentIndex - 1);
+        if (sortOrder === 'asc') {
+            if (currentIndex > 0) {
+                onIndexChange(currentIndex - 1);
+            }
+        } else {
+            if (currentIndex < pokemonList.length - 1) {
+                onIndexChange(currentIndex - 1);
+            }
         }
     };
 
@@ -86,6 +98,21 @@ function PokemonModal({ isOpen, onClose, pokemonList, currentIndex, onIndexChang
         return null;
     }
 
+    let isNextDisabled;
+    if (sortOrder === 'asc') {
+        isNextDisabled = currentIndex === pokemonList.length - 1;
+    } else {
+        isNextDisabled = currentIndex === 0;
+    }
+
+    let isPrevDisabled;
+    if (sortOrder === 'asc') {
+        isPrevDisabled = currentIndex === 0;
+    } else {
+        isPrevDisabled = currentIndex === pokemonList.length - 1;
+    }
+
+    
     return (
         <div className='Modal'>
             <div className='Modal-Content'>
@@ -129,12 +156,16 @@ function PokemonModal({ isOpen, onClose, pokemonList, currentIndex, onIndexChang
                     })}
                 </div>
                 <div className="Navigation">
-                    <button className="Arrow Left-Arrow" onClick={handlePrevious}>
-                        &lt; 
-                    </button>
-                    <button className="Arrow Right-Arrow" onClick={handleNext}>
-                        &gt; 
-                    </button>
+                    {!isPrevDisabled && (
+                        <button className="Arrow Left-Arrow" onClick={handlePrevious}>
+                            &lt; 
+                        </button>
+                    )}
+                    {!isNextDisabled && (
+                        <button className="Arrow Right-Arrow" onClick={handleNext}>
+                            &gt; 
+                        </button>
+                    )}
                 </div>
             </div>
         </div>

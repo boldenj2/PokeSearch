@@ -50,10 +50,9 @@ function PokemonGalleryPage() {
         fetchPokemon();
     }, [selectedTypes])
 
-
     const handlePokemonModalOpen = async(pokemon: Pokemon) => {
         try {
-            setCurrentIndex(pokemonList.findIndex((p) => p.id === pokemon.id));
+            setCurrentIndex(filteredPokemonList.findIndex((p) => p.id === pokemon.id));
             setIsModalOpen(true);
         } catch (error) {
             console.error('Error fetching Pokémon data');
@@ -61,7 +60,19 @@ function PokemonGalleryPage() {
     };
 
     const handleIndexChange = (index: number) => {
-        setCurrentIndex(index);
+        let newIndex = index;
+        if (sortOrder === 'asc') {
+            newIndex = index;
+        } else {
+            newIndex = currentIndex < newIndex ? currentIndex - 1 : currentIndex + 1;
+        }
+
+        if (newIndex < 0) {
+            newIndex = filteredPokemonList.length - 1;
+        } else if (newIndex >= filteredPokemonList.length) {
+            newIndex = 0;
+        }
+        setCurrentIndex(newIndex);
     };
 
     const handlePokemonModalClose = () => {
@@ -114,11 +125,12 @@ function PokemonGalleryPage() {
                 </div>
             </div>
             <PokemonModal
-                pokemonList={sortedPokemonList} 
+                pokemonList={filteredPokemonList} 
                 currentIndex={currentIndex}
                 isOpen={isModalOpen}
                 onClose={handlePokemonModalClose}
                 onIndexChange={handleIndexChange}
+                sortOrder={sortOrder}
             /> 
         </div>
     );
