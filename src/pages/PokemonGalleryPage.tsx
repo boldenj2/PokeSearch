@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import PokemonCardGallery from "../components/PokemonCardGallery";
 import TypeSelector from "../components/TypeSelector";
 import PokemonModal from "../components/PokemonModal";
-import {getPokemonByType, getPokemonByNameOrID, getAllPokemon} from "../api/pokemonService";
+import {getPokemonByType, getAllPokemon} from "../api/pokemonService";
 import "../styles/pokemonGalleryPage.css";
 import {Pokemon} from "../components/PokemonModal";
 
