@@ -1,13 +1,12 @@
 import React from 'react';
 
 interface TypeSelectorProps {
-  selectedType: string;
+  selectedTypes: string[];
   onTypeChange: (type: string) => void;
 }
 
-function TypeSelector({ selectedType, onTypeChange }: TypeSelectorProps) {
+function TypeSelector({ selectedTypes, onTypeChange }: TypeSelectorProps) {
     const types = [
-        { value: '', label: 'All Types' },
         { value: 'normal', label: 'Normal' },
         { value: 'fire', label: 'Fire' },
         { value: 'water', label: 'Water' },
@@ -35,7 +34,7 @@ function TypeSelector({ selectedType, onTypeChange }: TypeSelectorProps) {
             {types.map((type) => (
               <button
                 key={type.value || ''}
-                className={`type-button ${selectedType === type.value ? 'active': ''}`}
+                className={`type-button ${selectedTypes.includes(type.value) ? 'active': ''}`}
                 onClick={() => onTypeChange(type.value)}
               >
                 {type.label}

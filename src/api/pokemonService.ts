@@ -16,6 +16,11 @@ export const getPokemonByType = async (type: string | number) => {
     const response = await axios.get(`https://pokeapi.co/api/v2/type/${type}`);
     const pokemonData = response.data.pokemon;
 
+    if (!Array.isArray(pokemonData)) {
+      console.error('pokemonData is not an array or is undefined');
+      return [];
+  }
+
     // Map to return an array of Pokémon with name and id
     const pokemonList = await Promise.all(
         pokemonData.map(async (p: any) => {
