@@ -35,7 +35,7 @@ function TypeSelector({ selectedType, onTypeChange }: TypeSelectorProps) {
             {types.map((type) => (
               <button
                 key={type.value || ''}
-                className={`type-button ${selectedType === type.value ? 'active' : ''}`}
+                className={`type-button ${selectedType === type.value ? 'active': ''}`}
                 onClick={() => onTypeChange(type.value)}
               >
                 {type.label}

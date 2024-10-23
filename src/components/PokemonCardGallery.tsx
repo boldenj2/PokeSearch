@@ -6,6 +6,7 @@ interface Pokemon {
   sprites: {
     front_default: string;
   };
+  id : number;
 }
 
 const capitalizeFirstLetter = (string: string) => {
@@ -32,6 +33,7 @@ function PokemonCardGallery({idOrName}: {idOrName: string | number}) {
                     ) : (
                         <p>No image available</p>
                     )}
+                    <p>#{pokemon.id}</p>
                 </div>
             ) : (
                 <p>Loading...</p>

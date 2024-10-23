@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
 import PokemonSearchPage from './pages/PokemonSearchPage';
 import PokemonGalleryPage from './pages/PokemonGalleryPage';
 import './App.css';
+import './fonts/fonts.css';
 
 function App() {
   return (

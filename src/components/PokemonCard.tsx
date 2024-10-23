@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { getPokemonByNameOrID} from '../api/pokemonService';
+import { getPokemonByNameOrID, getAbilityByNameOrID } from '../api/pokemonService';
 
 interface Pokemon {
   name: string;
@@ -17,6 +17,11 @@ interface Pokemon {
       name: string;
     };
   }[];
+  abilities: {
+    ability: {
+      name: string;
+    };
+  }[]; 
 }
 
 const capitalizeFirstLetter = (string: string) => {
@@ -26,12 +31,32 @@ const capitalizeFirstLetter = (string: string) => {
 
 function PokemonCard({idOrName}: {idOrName: string | number}) {
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
+  const [abilityDescriptions, setAbilityDescriptions] = useState<{ [key: string]: string }>({});
+
 
   useEffect(() => {
     getPokemonByNameOrID(idOrName)
       .then((data) => setPokemon(data))
       .catch((error) => console.error('Error fetching Pokémon data:', error));
   }, [idOrName]);
+
+  useEffect(() => {
+    if (pokemon && pokemon.abilities) {
+      pokemon.abilities.forEach((abilityObj) => {
+        const abilityName = abilityObj.ability.name;
+
+        getAbilityByNameOrID(abilityName)
+          .then((data) => {
+            const englishEffect = data.effect_entries.find((entry: any) => entry.language.name === 'en');
+            setAbilityDescriptions((prevDescriptions) => ({
+              ...prevDescriptions,
+              [abilityName]: englishEffect ? englishEffect.effect : 'No description available',
+            }));
+          })
+          .catch((error) => console.error('Error fetching ability data:', error));
+      });
+    }
+  }, [pokemon])
 
   const getTypeColor = (type: string) => {
     const typeColors: { [key: string]: string } = {
@@ -91,6 +116,20 @@ function PokemonCard({idOrName}: {idOrName: string | number}) {
                 {statObj.stat.name}: {statObj.base_stat}
               </p>
             ))}
+          </div>
+
+          {/* Display Pokémon Abilities */}
+          <div className='Abilities'>
+            <h3>Abilities:</h3>
+            {pokemon.abilities?.map((abilityObj: any) => {
+              const abilityName = abilityObj.ability.name;
+              return (
+                <div key={abilityName}>
+                  <p className='Name'>{capitalizeFirstLetter(abilityName)}</p>
+                  <p className='Description'>{abilityDescriptions[abilityName] || 'Loading description...'}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       ) : (

@@ -10,14 +10,18 @@
     align-items: center;
     z-index: 1000; /* Ensure it's on top of other content */
 }
-
 .Modal-Content {
     background: white;
     padding: 20px;
     border-radius: 8px;
     max-width: 600px;
-    width: 80%;
+    width: 95%;
     position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 10px solid #f1c40f; /* Yellow border like a Pokémon card */
+    background-size: cover;
+    background-position: center;
+    background-color: #E6E6FA;
 }
 
 
@@ -35,8 +39,8 @@
 }
 
 .Modal .Modal-Content img {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
 }
 
 .Modal .Modal-Content .Stats {
@@ -54,3 +58,40 @@
     font-size: 24px;
     cursor: pointer;
 }
+
+.Modal-Content .Abilities {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 10px; 
+}
+
+.Arrow {
+    margin:auto;
+    background: transparent;
+    border: none;
+    font-size: 24px; 
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.Arrow:hover {
+    opacity: 0.6;
+}
+
+.Left-Arrow {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+}
+
+.Right-Arrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+}
+
+

@@ -15,6 +15,7 @@ function PokemonSearchPage() {
             <h1>Pokémon Search</h1>
             <SearchBar onSearch={handleSearch} />
             <PokemonCard idOrName={submittedPokemon} />
+            <img src="https://i.pinimg.com/originals/a4/c7/1c/a4c71c740ae5689e8ba3f8d6af90a6d0.gif" alt="mewtwo" />
         </div>
     );
 }

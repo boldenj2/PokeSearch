@@ -1,14 +1,33 @@
+.Search-Page h1 {
+    color: #f1c40f;
+    font-size: 2em;
+    text-align: center;
+    text-shadow: 2px 2px 4px #000;
+    margin-top: 20px;
+    -webkit-text-stroke: 1px blue;
+    font-family: 'Pokemon', sans-serif;
+}
+
+.Search-Page img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35%;
+    height: max-content;
+}
+
 .Search-Page .Pokemon-Card {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px;
-    margin: auto;
+    margin: 50px auto;
     margin-top: 20px;
     width: 50%;
     border: 1px solid #000;
     border-radius: 10px;
-    background-color: #f0f0f0;
+    background-color: #E6E6FA;
+    border: 5px solid #f1c40f;
 } 
 
 .Search-Page .Pokemon-Card img {
@@ -24,9 +43,25 @@
 }
 
 .Search-Page .Pokemon-Card .Stats {
+    width: 90%;
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 10px;
     gap: 10px; 
+}
+
+.Search-Page .Pokemon-Card .Abilities {
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    gap: 10px; 
+}
+
+.Search-Page .Pokemon-Card .Abilities .Name {
+    font-size: 17px;
+    font-weight: bold;
+    text-decoration: underline;
 }

@@ -1,10 +1,36 @@
 import React from "react";
 import '../styles/pokemonModal.css';
 
+export interface Pokemon {
+    name: string;
+    id: number;
+    sprites: {
+        front_default: string;
+    };
+    types: {
+        type: {
+            name: string;
+        };
+    }[];
+    stats: {
+        base_stat: number;
+        stat: {
+            name: string;
+        };
+    }[];
+    abilities: {
+        ability: {
+            name: string;
+        };
+    }[]; 
+}
+
 interface PokemonModalProps {
     isOpen: boolean;
     onClose: () => void;
-    pokemon: any;
+    pokemonList: Pokemon[];
+    currentIndex: number;
+    onIndexChange: (index: number) => void;
 }
 
 const capitalizeFirstLetter = (string: string) => {
@@ -12,10 +38,12 @@ const capitalizeFirstLetter = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
-function PokemonModal({ isOpen, onClose, pokemon }: PokemonModalProps) {
-    if (!isOpen || !pokemon) {
+function PokemonModal({ isOpen, onClose, pokemonList, currentIndex, onIndexChange }: PokemonModalProps) {
+    if (!isOpen || !pokemonList || pokemonList.length === 0) {
         return null;
     }
+
+    const pokemon = pokemonList[currentIndex];
 
     const getTypeColor = (type: string) => {
         const typeColors: { [key: string]: string } = {
@@ -40,6 +68,22 @@ function PokemonModal({ isOpen, onClose, pokemon }: PokemonModalProps) {
         };
         return typeColors[type];
     };
+
+    const handleNext = () => {
+        if (currentIndex < pokemonList.length - 1) {
+            onIndexChange(currentIndex + 1);
+        }
+    };
+
+    const handlePrevious = () => {
+        if (currentIndex > 0) {
+            onIndexChange(currentIndex - 1);
+        }
+    };
+
+    if (!isOpen) {
+        return null;
+    }
 
     return (
         <div className='Modal'>
@@ -71,6 +115,25 @@ function PokemonModal({ isOpen, onClose, pokemon }: PokemonModalProps) {
                             {statObj.stat.name}: {statObj.base_stat}
                         </p>
                     ))}
+                </div>
+                <div className='Abilities'>
+                    <h3>Abilities:</h3>
+                    {pokemon.abilities?.map((abilityObj: any) => {
+                    const abilityName = abilityObj.ability.name;
+                    return (
+                        <div key={abilityName}>
+                        <p className="Name">{capitalizeFirstLetter(abilityName)}</p>
+                        </div>
+                    );
+                    })}
+                </div>
+                <div className="Navigation">
+                    <button className="Arrow Left-Arrow" onClick={handlePrevious}>
+                        &lt; 
+                    </button>
+                    <button className="Arrow Right-Arrow" onClick={handleNext}>
+                        &gt; 
+                    </button>
                 </div>
             </div>
         </div>

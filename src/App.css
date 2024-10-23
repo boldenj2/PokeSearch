@@ -1,11 +1,12 @@
 html, body, #root {
   height: 100%;
   margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }
 
 body {
-  background-color: #282c34;
+  background-color: #D1C4E9;
   background-size: cover;
 }
 
@@ -16,8 +17,6 @@ body {
   justify-content: center;
   text-align: center;
   flex-direction: column;
-
-
 }
 
 .App a {
@@ -30,15 +29,21 @@ body {
   margin: 10px;
   border: 2px solid white;
   border-radius: 10px;
-  background-color: aliceblue;
+  background-color: #f1c40f;
   justify-content: space-evenly;
   transition: background-color 0.3s, color 0.3s;
+  display: inline-block;
+}
 
-  }
+nav {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+}
 
-  .App a:hover {
-    background-color: #61dafb;
-    color: white;
+.App a:hover {
+  background-color: lightyellow;
 }
 
 h1 {
