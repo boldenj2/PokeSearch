@@ -9,7 +9,6 @@ import {Pokemon} from "../components/PokemonModal";
 function PokemonGalleryPage() {
     const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
     const [selectedType, setSelectedType] = useState<string>('All Types');
-    const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
     const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -33,8 +32,6 @@ function PokemonGalleryPage() {
 
     const handlePokemonModalOpen = async(pokemon: Pokemon) => {
         try {
-            const fullPokemon = await getPokemonByNameOrID(pokemon.name || pokemon.id);
-            setSelectedPokemon(fullPokemon);
             setCurrentIndex(pokemonList.findIndex((p) => p.id === pokemon.id));
             setIsModalOpen(true);
         } catch (error) {
@@ -44,12 +41,10 @@ function PokemonGalleryPage() {
 
     const handleIndexChange = (index: number) => {
         setCurrentIndex(index);
-        setSelectedPokemon(pokemonList[index]); // Update the selected Pokémon
     };
 
     const handlePokemonModalClose = () => {
         setIsModalOpen(false);
-        setSelectedPokemon(null); // Clear selected Pokémon when closing the modal
     };
 
     const handleSortOrderChange = (order : 'asc' | 'desc') => {
@@ -92,8 +87,8 @@ function PokemonGalleryPage() {
                 </div>
             </div>
             <PokemonModal
-                pokemonList={sortedPokemonList} // Pass the list of Pokémon
-                currentIndex={currentIndex} // Pass the current index
+                pokemonList={sortedPokemonList} 
+                currentIndex={currentIndex}
                 isOpen={isModalOpen}
                 onClose={handlePokemonModalClose}
                 onIndexChange={handleIndexChange}

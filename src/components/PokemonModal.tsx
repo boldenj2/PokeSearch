@@ -26,6 +26,7 @@ export interface Pokemon {
 }
 
 interface PokemonModalProps {
+
     isOpen: boolean;
     onClose: () => void;
     pokemonList: Pokemon[];
