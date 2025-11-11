@@ -12,18 +12,20 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 25%;
-    height: max-content;
+    width: 35%;
+    height: auto;
+    max-width: 260px;
 }
 
 .Search-Page .Pokemon-Card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
-    margin: 50px auto;
+    padding: 12px;
+    margin: 40px auto;
     margin-top: 20px;
-    width: 50%;
+    width: 60%;
+    max-width: 720px;
     border: 1px solid #000;
     border-radius: 10px;
     background-color: #E6E6FA;
@@ -31,8 +33,9 @@
 } 
 
 .Search-Page .Pokemon-Card img {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
+    max-width: 45%;
 }
 
 .Search-Page .Pokemon-Card .Type span {
@@ -64,4 +67,83 @@
     font-size: 17px;
     font-weight: bold;
     text-decoration: underline;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+    .Search-Page img {
+        width: 50%;
+        max-width: 200px;
+    }
+
+    .Search-Page .Pokemon-Card {
+        width: 95%;
+        padding: 10px;
+        margin: 16px auto;
+    }
+
+    .Search-Page .Pokemon-Card img {
+        width: 110px;
+        height: 110px;
+        max-width: 40%;
+    }
+
+    .Search-Page .Pokemon-Card .Stats {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .Search-Page .Pokemon-Card .Abilities {
+        text-align: left;
+    }
+}
+
+/* Additional mobile centering and sizing for Pokemon card */
+@media (max-width: 600px) {
+    .Search-Page .Pokemon-Card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    /* Ensure internal sections fill width and center their contents */
+    .Search-Page .Pokemon-Card > div,
+    .Search-Page .Pokemon-Card .Type,
+    .Search-Page .Pokemon-Card .Stats,
+    .Search-Page .Pokemon-Card .Abilities {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 6px;
+    }
+
+    .Search-Page .Pokemon-Card h2 {
+        font-size: 1.25rem;
+        margin: 6px 0;
+    }
+
+    .Search-Page .Pokemon-Card img {
+        margin: 8px 0;
+    }
+
+    .Search-Page .Pokemon-Card .Type span {
+        display: inline-block;
+        margin: 4px 6px;
+    }
+
+    /* Make stats paragraphs wrap and center */
+    .Search-Page .Pokemon-Card .Stats p {
+        margin: 4px 0;
+        width: 100%;
+    }
+
+    .Search-Page .Pokemon-Card .Abilities .Name {
+        font-size: 15px;
+    }
 }

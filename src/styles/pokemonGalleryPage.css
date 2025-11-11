@@ -16,36 +16,40 @@
 .Pokemon-Container {
     margin: auto;
     display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive columns */
-    gap: 20px; 
-    padding: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); /* Responsive columns */
+    gap: 16px; 
+    padding: 16px;
     border: 2px solid #ccc; 
     border-radius: 10px; 
-    background-color: #E6E6FA
+    background-color: #E6E6FA;
 }
 
 .Gallery-Page .Pokemon-Card {
-    color: white;
-    width: 150px;
-    height: 200px;
-    border: 5px solid #f1c40f;;
+    color: #000;
+    border: 5px solid #f1c40f;
     border-radius: 10px;
     background-color: #E6E6FA;
-    margin: 10px;
+    margin: 6px;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
     background-image: url('https://i.pinimg.com/control/564x/eb/d6/b4/ebd6b40346109b1ff8c4f56d4d01ebf7.jpg');
     background-size: cover;
     background-position: center;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 160px;
+}
 
-    img {
-        width: 70px;
-        height: 70px;
-        border: 1px solid #000;
-        border-radius: 10%;
-        background-color: rgba(240, 240, 240, 0.5);
-    }
+.Gallery-Page .Pokemon-Card img {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #000;
+    border-radius: 10%;
+    background-color: rgba(240, 240, 240, 0.5);
 }
 
 .Gallery-Page .Pokemon-Card:hover {
@@ -58,9 +62,9 @@
 
 .Gallery-Page .Type-Selector .Button-Container button {
     height: 40px;
-    width: 85px;
-    padding: 5px;
-    margin: 5px;
+    min-width: 64px;
+    padding: 6px 10px;
+    margin: 6px;
     border: 2px solid #000;
     border-radius: 10px;
     transition: transform 0.3s ease-in-out;
@@ -84,17 +88,16 @@
 .Gallery-Page .Sort-Order {
     width: 96%;
     display: flex;
-    margin: 50px;
+    margin: 30px auto;
     justify-content: flex-end;
     margin-bottom: 10px;
     gap: 10px;
 }
 
 .Gallery-Page .Sort-Order button {
-    height: 30px;
-    width: 200px;
-    padding-top: 50px;
-    padding: 5px;
+    height: 34px;
+    min-width: 120px;
+    padding: 6px 10px;
     border: 2px solid #000;
     border-radius: 10px;
     transition: transform 0.3s ease-in-out;
@@ -107,4 +110,32 @@
 
 .Gallery-Page .Sort-Order button.active {
     background-color: purple;
+}
+
+/* Mobile tweaks */
+@media (max-width: 600px) {
+    .Pokemon-Container {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .Gallery-Page .Pokemon-Card {
+        min-height: 140px;
+        padding: 10px;
+    }
+
+    .Gallery-Page .Sort-Order {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 16px auto;
+    }
+
+    .Gallery-Page .Type-Selector .Button-Container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
 }
